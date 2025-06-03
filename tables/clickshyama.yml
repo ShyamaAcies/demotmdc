@@ -1,0 +1,76 @@
+tables:
+  - name: click_shyamahb
+    sql: {{ load_sql('clickb') }}
+    description: Table containing information about customer
+    public: true 
+
+    joins:
+      - name: user_shyamaloc
+        relationship: many_to_one
+        sql: "{TABLE.location_id} = {user_shyamaloc.location_id}"
+
+    dimensions:
+      - name: ds
+        type: string
+        column: ds
+        description: "timestemp column"
+        primary_key: true
+
+      - name: location_id
+        type: number
+        column: location_id
+        description: "location_id"
+
+      - name: geo_id
+        type: number
+        column: geo_id
+        description: "geographic id"
+
+      - name: location_name
+        type: string
+        column: location_name
+        description: "Name of the state"  
+
+      - name: geo_name
+        type: string
+        column: geo_name
+        description: "geographic name"
+        
+      - name: booking_id
+        type: number
+        column: booking_id
+        description: "booking id "  
+
+      - name: advertiser_id
+        type: number
+        column: advertiser_id
+        description: "advertiser id" 
+
+      - name: campaign_id
+        type: number
+        column: campaign_id
+        description: "campaign id"  
+
+      - name: user_id
+        type: number
+        column: user_id
+        description: "user id" 
+      
+      - name: impression_count
+        type: number
+        column: impression_count
+        description: "impression count"
+
+      - name: interaction_count
+        type: number
+        column: interaction_count
+        description: "interaction count"  
+
+    
+      
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+tables:
+  - name: user_shyamaloc # this name must be same as ingestion file's output table name(dataos://lakehouse:nivedhaa/click_bookings)
+    sql: {{ load_sql('loc') }}
+    description: Table containing information about customers.
+    public: true
+
+    dimensions:
+      - name: ds
+        type: time
+        column: ds
+        description: "Timestamp column"
+
+      - name: user_id
+        type: number
+        column: user_id 
+        description: "Unique identifier for Users"  
+      
+      - name: location_id
+        type: number
+        column: location_id
+        description: "Location ID"
+
+      - name: geo_id
+        type: number
+        column: geo_id
+        description: "Geographic ID"
+
+      - name: location_name
+        type: string
+        column: location_name
+        description: "Name of the State"
+
+      - name: geo_name
+        type: string
+        column: geo_name
+        description: "Name of the Country"
+
+      - name: booking_id
+        type: number
+        column: booking_id
+        description: "Unique identifier for booking"
+        primary_key: true
+
+      - name: advertiser_id
+        type: number
+        column: advertiser_id
+        description: "Unique identifier for advertiser"
+
+      - name: campaign_id
+        type: number
+        column: campaign_id
+        description: "Unique identifier for Campaign"
+
+      - name: booking_amount
+        type: number
+        column: booking_amount
+        description: "booking amount"  
+
+      - name: currency
+        type: string
+        column: currency
+        description: "currency of the amount"
+
+      - name: booking_status
+        type: string
+        column: booking_status
+        description: "Status of the booking"  
+            
+
+      - name: impression_count
+        type: number
+        column: impression_count
+        description: "Number of impressions"
+
+      - name: interaction_count
+        type: number
+        column: interaction_count
+        description: "Number of interactions"
+
+      - name: pageview_count
+        type: number
+        column: pageview_count
+        description: "count of the page view"  
+
+    measures:
+    - name: unique_location_name
+      sql: "COUNT(DISTINCT {location_name})"
+      type: number
+      description: "The total number of unique location in the dataset"
